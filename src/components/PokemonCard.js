@@ -29,4 +29,4 @@ const PokemonCard = props => {
 
 };
 
-export default pokemonCard;
+export default PokemonCard;
