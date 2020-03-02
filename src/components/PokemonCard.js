@@ -4,7 +4,11 @@ const PokemonCard = props => {
     const { pokemon, handleClick } = props;
 
     function getPokemonNum(num) {
-        return ('00' + num).slice(-2)
+        return ('00' + num).slice(-3)
+    }
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
     return (
@@ -20,7 +24,7 @@ const PokemonCard = props => {
                 <div className="content">
                     <div className="header">
                         <p>#{getPokemonNum(pokemon.id)}</p>
-                        <h3>{pokemon.species}</h3>
+                        <h3>{capitalizeFirstLetter(pokemon.species)}</h3>
                     </div>
                     {/* add types and pokeball if collected */}
                 </div>
