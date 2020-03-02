@@ -3,7 +3,7 @@ import PokemonCard from "../components/PokemonCard";
 
 class PokemonCollection extends React.Component {
     renderPokemons = () => {
-        return this.props.pokemons.map(pokemon => {
+        return this.props.allPokemon.map(pokemon => {
             return <PokemonCard pokemon={pokemon} />
         })
     }
