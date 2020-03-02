@@ -24,7 +24,7 @@ const PokemonCard = props => {
                     {/* add types and pokeball if collected */}
                 </div>
             </div>
-        </div >
+        </div>
     );
 
 };
