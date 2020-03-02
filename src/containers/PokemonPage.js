@@ -1,6 +1,6 @@
 import React from "react";
 import PokemonCollection from "./PokemonCollection";
-// import PokemonSpecs from "../components/PokemonSpecs"
+import PokemonSpecs from "../components/PokemonSpecs"
 import MyPokemon from "./MyPokemon"
 
 class PokemonPage extends React.Component {
@@ -8,7 +8,9 @@ class PokemonPage extends React.Component {
   state = {
     allPokemon: [],
     myPokemon: [],
-    currentPokemon: null
+    currentPokemon: null,
+    pokemon: "",
+    showPokemon: true
   }
 
   componentDidMount() {
@@ -20,6 +22,30 @@ class PokemonPage extends React.Component {
       .catch(err => console.log(err))
   }
 
+  handleClick = (pokemon) => {
+    let myPokemonArmy = this.state.myPokemon
+    if (!myPokemonArmy.includes(pokemon)){
+      this.setState({
+        myPokemon:[...this.state.myPokemon, pokemon]
+      })
+    }
+    else {
+      let pokemonArray = myPokemonArmy.filter(noPokemon => noPokemon.id !== pokemon.id )
+      this.setState({
+        myPokemon: [...pokemonArray]
+      })
+    }
+  }
+
+  showPokemonSpecs = (pokemon) => {
+    this.state.showPokemon? this.setState({
+      pokemon: pokemon,
+      showBots: false
+    }) : this.setState({
+      showPokemon: true
+    })
+  }
+
   // showPokemonSpecs(pokemon) {
 
   // }
@@ -27,9 +53,9 @@ class PokemonPage extends React.Component {
   render() {
     return (
       <div>
-        <PokemonCollection allPokemon={this.state.allPokemon} />
-        {/* <PokemonSpecs /> */}
-        {/* <MyPokemon myPokemon={this.state.myPokemon} /> */}
+        <PokemonSpecs showPokemonSpecs = {this.showPokemonSpecs} pokemon = {this.state.pokemon} handleClick = {this.handleClick} /> 
+        <MyPokemon myPokemon={this.state.myPokemon} handleClick = {this.handleClick} /> 
+        <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
       </div>
     );
   }

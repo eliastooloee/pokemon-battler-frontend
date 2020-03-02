@@ -1,7 +1,7 @@
 import React from "react";
 
 const PokemonCard = props => {
-    const { pokemon } = props;
+    const { pokemon, handleClick } = props;
 
     function getPokemonNum(num) {
         return ('00' + num).slice(-2)
@@ -12,6 +12,7 @@ const PokemonCard = props => {
             <div
                 className="ui card"
                 key={pokemon.id}
+                onClick={() => handleClick(pokemon)}
             >
                 <div className="image">
                     <img alt="pokemon sprite" src={pokemon.sprite_front} />

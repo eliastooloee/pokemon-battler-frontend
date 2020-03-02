@@ -4,7 +4,7 @@ import PokemonCard from "../components/PokemonCard";
 class PokemonCollection extends React.Component {
     renderPokemons = () => {
         return this.props.allPokemon.map(pokemon => {
-            return <PokemonCard pokemon={pokemon} />
+            return <PokemonCard pokemon={pokemon} key={pokemon.id} handleClick = {this.props.handleClick} />
         })
     }
 
