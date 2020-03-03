@@ -15,11 +15,12 @@ const active = {
 
 class NavBar extends React.Component {
     render() {
+        console.log(this.props)
         return (
             <div>
                 <NavLink to="/battle" exact style={link} activeStyle={active}>Battle</NavLink>
                 <NavLink to="/pokedex" exact style={link} activeStyle={active}>Pokédex</NavLink>
-                <NavLink to="/login" exact style={link} activeStyle={active}>Logout</NavLink>
+                <NavLink to="/login" exact style={link} activeStyle={active}>{this.props.loggedIn ? "Logout" : "Login"}</NavLink>
             </div>
         )
     }
