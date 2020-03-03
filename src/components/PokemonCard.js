@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from 'react';
+
 
 const PokemonCard = props => {
     const { pokemon, handleClick } = props;
+
 
     function getPokemonNum(num) {
         return ('00' + num).slice(-3)

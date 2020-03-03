@@ -46,6 +46,22 @@ class PokemonPage extends React.Component {
     })
   }
 
+
+  selectPokemon = (pokemon) => {
+    let myPokemonArmy = this.state.myPokemon
+    if(myPokemonArmy.includes(pokemon)) {
+      this.setState({
+      currentPokemon: pokemon,
+      showSelected: true
+    })} else {
+      this.setState({
+        showSelected: false
+      })
+    }
+  }
+
+
+
   // showPokemonSpecs(pokemon) {
 
   // }
@@ -54,7 +70,7 @@ class PokemonPage extends React.Component {
     return (
       <div>
         <PokemonSpecs showPokemonSpecs = {this.showPokemonSpecs} pokemon = {this.state.pokemon} handleClick = {this.handleClick} /> 
-        <MyPokemon myPokemon={this.state.myPokemon} handleClick = {this.handleClick} /> 
+        <MyPokemon myPokemon={this.state.myPokemon} handleClick = {this.selectPokemon} /> 
         <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
       </div>
     );
