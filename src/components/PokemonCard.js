@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 
 const PokemonCard = props => {
+    // console.log(props)
     const { pokemon, handleClick } = props;
 
 
