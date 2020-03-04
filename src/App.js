@@ -4,9 +4,9 @@ import PokemonPage from "./containers/PokemonPage";
 import Battle from "./components/Battle"
 import Login from "./containers/Login"
 import NavBar from './components/NavBar'
-
 import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Redirect } from "react-router-dom"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Redirect } from "react-router-dom";
 import MyPokemon from './containers/MyPokemon';
 import SignUp from './containers/SignUp'
 
