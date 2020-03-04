@@ -15,33 +15,35 @@ const PokemonSpecs = props => {
             />
           </div>
           <div className="four wide column">
-            <h2>Name: {pokemon.species}</h2>
+            <h2>{pokemon.species}</h2>
             <p>
-              <strong>Catchphrase: </strong>
+              <strong>HP: </strong>
+              {pokemon.stat_hp}
+            </p>
+            <p>
+              <strong>Speed: </strong>
               {pokemon.stat_speed}
             </p>
+            <p>
+              <strong>Attack: </strong>
+              {pokemon.stat_attack}
+            </p>
+            <p>
+              <strong>Special Attack: </strong>
+              {pokemon.stat_special_attack}
+            </p>
+            <p>
+              <strong>Defense: </strong>
+              {pokemon.stat_defense}
+            </p>
+            <p>
+              <strong>Special Defense: </strong>
+              {pokemon.stat_special_defense}
+            </p>
             <strong>
-              Class: {pokemon.description} 
+              Description: {pokemon.description}
             </strong>
             <br />
-            <div className="ui segment">
-              <div className="ui three column centered grid">
-                <div className="row">
-                  <div className="column">
-                    <i className="icon large circular red heartbeat" />
-                    <strong>{pokemon.stat_hp}</strong>
-                  </div>
-                  <div className="column">
-                    <i className="icon large circular yellow lightning" />
-                    <strong>{pokemon.stat_attack}</strong>
-                  </div>
-                  <div className="column">
-                    <i className="icon large circular blue shield" />
-                    <strong>{pokemon.stat_defense}</strong>
-                  </div>
-                </div>
-              </div>
-            </div>
             <button
               className="ui button fluid"
               onClick={() =>
