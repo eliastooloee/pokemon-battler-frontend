@@ -1,18 +1,17 @@
 import React from 'react'
-import { Redirect } from "react-router-dom"
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export default class Login extends React.Component {
     state = {
-        username: "",
-        redirect: null
+        username: ""
     }
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.loginUser(this.state.username)
-        this.setState({
-            redirect: "/pokedex"
-        })
+        if (this.props.loginUser(this.state.username)) {
+            this.props.history.push("/pokedex")
+        }
     }
 
     handleChange = event => {
@@ -21,23 +20,17 @@ export default class Login extends React.Component {
         })
     }
 
-    handleSignUp = () => {
-        this.setState({
-            redirect: "/signup"
-        })
+    handleSignupClick = () => {
+        this.props.history.push("/signup")
     }
 
     render() {
-        if (this.state.redirect) {
-            return <Redirect to={this.state.redirect} />
-        }
         return (
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>
-                    <label>Login </label>
-                    <input type="text" placeholder="Username" name="username" onChange={event => this.handleChange(event)} />
-                    <button type="submit">Login</button>
-                    {/* <button onClick={() => this.props.signUp(this.state.username)}>Sign Up</button> */}
+                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
+                    <Button type="submit" variant="contained" color="primary">Login</Button>
+                    <Button variant="contained" color="primary" onClick={() => this.handleSignupClick()}>Signup</Button>
                 </form>
             </div>
         )
