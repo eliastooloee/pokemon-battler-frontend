@@ -6,7 +6,6 @@ import Login from "./containers/Login"
 import NavBar from './components/NavBar'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Redirect } from "react-router-dom";
 import MyPokemon from './containers/MyPokemon';
 import SignUp from './containers/SignUp'
 
@@ -17,8 +16,7 @@ class App extends Component {
     currentUser: {
       id: "",
       name: ""
-    },
-    redirect: null
+    }
   }
 
   signUp = (username) => {
@@ -43,9 +41,6 @@ class App extends Component {
           }
         })
       })
-      .then(this.setState({
-        redirect: "/pokedex"
-      }))
       .catch(err => console.log(err))
   }
 
@@ -53,9 +48,6 @@ class App extends Component {
     fetch("http://localhost:3000/users")
       .then(res => res.json())
       .then(data => this.validUser(data, username))
-      .then(this.setState({
-        redirect: "/pokedex"
-      }))
       .catch(err => console.log(err))
   }
 
@@ -65,7 +57,6 @@ class App extends Component {
     if (userExists) {
       console.log("valid user")
       this.setState({
-        redirect: "/pokedex",
         currentUser: {
           id: userExists.id,
           name: userExists.name
