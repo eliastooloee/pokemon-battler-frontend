@@ -5,17 +5,22 @@ const link = {
     width: '100px',
     padding: '12px',
     margin: '0 6px 6px',
-    background: 'blue',
     textDecoration: 'none',
-    color: 'white',
+    color: 'darkgrey',
+}
+
+const active = {
+    color: 'red'
 }
 
 class NavBar extends React.Component {
     render() {
+        console.log(this.props)
         return (
             <div>
-                <NavLink to="/pokedex" exact style={link} activeStyle={{ background: 'darkblue' }}>Pokédex</NavLink>
-                {/* <NavLink to="/login" exact style={link} activeStyle={{ background: 'darkblue' }}>Login</NavLink> */}
+                <NavLink to="/battle" exact style={link} activeStyle={active}>Battle</NavLink>
+                <NavLink to="/pokedex" exact style={link} activeStyle={active}>Pokédex</NavLink>
+                <NavLink to="/login" exact style={link} activeStyle={active}>{this.props.loggedIn ? "Logout" : "Login"}</NavLink>
             </div>
         )
     }
