@@ -15,9 +15,8 @@ export default class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        if (this.props.loginUser(this.state.username)) {
-            this.props.history.push("/pokedex")
-        }
+        this.props.loginUser(this.state.username)
+        this.props.history.push("/pokedex")
     }
 
     handleChange = event => {
@@ -49,17 +48,15 @@ export default class Login extends React.Component {
                                 </Typography>
                                 <CardActions>
                                     <Button type="submit" variant="contained" color="primary">Login</Button>
-                                    <Button variant="contained" color="primary" onClick={() => this.handleSignupClick}>Signup</Button>
-
+                                    <Button variant="contained" color="primary" onClick={() => this.handleSignupClick()}>Signup</Button>
                                 </CardActions>
                             </form>
-
                         </CardContent>
 
                     </Card>
 
                 </Grid>
-            </div>
+            </div >
         )
     }
 }
