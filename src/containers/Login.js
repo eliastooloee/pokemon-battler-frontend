@@ -1,6 +1,12 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import { Typography } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 export default class Login extends React.Component {
     state = {
@@ -9,9 +15,8 @@ export default class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        if (this.props.loginUser(this.state.username)) {
-            this.props.history.push("/pokedex")
-        }
+        this.props.loginUser(this.state.username)
+        this.props.history.push("/pokedex")
     }
 
     handleChange = event => {
@@ -27,12 +32,31 @@ export default class Login extends React.Component {
     render() {
         return (
             <div className="Login">
-                <form onSubmit={this.handleSubmit}>
-                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
-                    <Button type="submit" variant="contained" color="primary">Login</Button>
-                    <Button variant="contained" color="primary" onClick={() => this.handleSignupClick()}>Signup</Button>
-                </form>
-            </div>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ margin: '10vh' }}>
+                    <Card variant="outlined">
+                        <CardContent>
+                            <form onSubmit={this.handleSubmit}>
+                                <Typography>
+                                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
+
+                                </Typography>
+                                <CardActions>
+                                    <Button type="submit" variant="contained" color="primary">Login</Button>
+                                    <Button variant="contained" color="primary" onClick={() => this.handleSignupClick()}>Signup</Button>
+                                </CardActions>
+                            </form>
+                        </CardContent>
+
+                    </Card>
+
+                </Grid>
+            </div >
         )
     }
 }
