@@ -1,5 +1,6 @@
 import React from 'react'
-import PokemonCard from '../components/PokemonCard'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export default class SignUp extends React.Component {
     state = {
@@ -23,12 +24,8 @@ export default class SignUp extends React.Component {
         return (
             <div className="SignUp">
                 <form onSubmit={this.handleSubmit}>
-                    <label>Sign Up </label>
-                    <input type="text" placeholder="Username" name="username" onChange={event => this.handleChange(event)} />
-                    {/* <PokemonCard pokemon={} />
-                    <PokemonCard pokemon={} />
-                    <PokemonCard pokemon={} /> */}
-                    <button type="submit">Sign Up</button>
+                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
+                    <Button type="submit" variant="contained" color="primary">Signup</Button>
                 </form>
             </div>
         )

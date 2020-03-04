@@ -1,4 +1,6 @@
 import React from 'react'
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 export default class Login extends React.Component {
     state = {
@@ -7,8 +9,9 @@ export default class Login extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
-        this.props.loginUser(this.state.username)
-        this.props.history.push("/pokedex")
+        if (this.props.loginUser(this.state.username)) {
+            this.props.history.push("/pokedex")
+        }
     }
 
     handleChange = event => {
@@ -17,13 +20,17 @@ export default class Login extends React.Component {
         })
     }
 
+    handleSignupClick = () => {
+        this.props.history.push("/signup")
+    }
+
     render() {
         return (
             <div className="Login">
                 <form onSubmit={this.handleSubmit}>
-                    <label>Login </label>
-                    <input type="text" placeholder="Username" name="username" onChange={event => this.handleChange(event)} />
-                    <button type="submit">Login</button>
+                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
+                    <Button type="submit" variant="contained" color="primary">Login</Button>
+                    <Button variant="contained" color="primary" onClick={() => this.handleSignupClick()}>Signup</Button>
                 </form>
             </div>
         )
