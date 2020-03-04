@@ -20,7 +20,7 @@ class NavBar extends React.Component {
             <div>
                 <NavLink to="/battle" exact style={link} activeStyle={active}>Battle</NavLink>
                 <NavLink to="/pokedex" exact style={link} activeStyle={active}>Pokédex</NavLink>
-                <NavLink to="/login" exact style={link} activeStyle={active}>{this.props.loggedIn ? "Logout" : "Login"}</NavLink>
+                <NavLink to="/login" exact style={link} activeStyle={active} onClick={this.props.logout}>{this.props.loggedIn ? "Logout" : "Login"}</NavLink>
             </div>
         )
     }

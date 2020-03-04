@@ -40,10 +40,12 @@ class App extends Component {
           currentUser: {
             id: data.id,
             name: data.name
-          },
-          redirect: "/pokedex"
+          }
         })
       })
+      .then(this.setState({
+        redirect: "/pokedex"
+      }))
       .catch(err => console.log(err))
   }
 
@@ -51,40 +53,50 @@ class App extends Component {
     fetch("http://localhost:3000/users")
       .then(res => res.json())
       .then(data => this.validUser(data, username))
+      .then(this.setState({
+        redirect: "/pokedex"
+      }))
       .catch(err => console.log(err))
   }
 
   validUser = (data, username) => {
     console.log("valid?", data, username)
-    let userExists = data.find(userObj => userObj.name == username.name)
+    let userExists = data.find(userObj => userObj.name === username)
     if (userExists) {
       console.log("valid user")
-      this.state.currentUser = userExists
       this.setState({
-        redirect: "/pokedex"
+        redirect: "/pokedex",
+        currentUser: {
+          id: userExists.id,
+          name: userExists.name
+        },
+        loggedIn: true
       })
     } else {
       alert("User Does Not Exist")
     }
   }
 
+  logout = () => {
+    this.setState({
+      loggedIn: false,
+      currentUser: {
+        id: "",
+        name: ""
+      }
+    })
+  }
+
   render() {
-    if (this.state.loggedIn) {
-      return (
-        <Router>
-          <Redirect to={this.state.redirect} />
-        </Router>
-      )
-    }
     return (
       <div className="App">
         <Router>
-          <NavBar loggedIn={this.state.loggedIn} />
+          <NavBar loggedIn={this.state.loggedIn} logout={this.logout} />
           <Route path="/pokedex" exact component={PokemonPage} />
           <Route path="/battle" exact component={Battle} />
           <Route path="/profile" exact component={MyPokemon} />
-          <Route path="/login" exact component={() => <Login loginUser={this.loginUser} />} />
-          <Route path="/signup" exact component={() => <SignUp signUp={this.signUp} />} />
+          <Route path="/login" exact render={(props) => <Login {...props} loginUser={this.loginUser} />} />
+          <Route path="/signup" exact render={(props) => <SignUp {...props} signUp={this.signUp} />} />
         </Router>
       </div>
     );

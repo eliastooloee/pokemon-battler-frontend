@@ -10,6 +10,7 @@ export default class SignUp extends React.Component {
     handleSubmit = event => {
         event.preventDefault()
         this.props.signUp(this.state.username)
+        this.props.history.push("/pokedex")
     }
 
     handleChange = event => {

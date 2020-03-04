@@ -13,6 +13,7 @@ export default class Login extends React.Component {
         this.setState({
             redirect: "/pokedex"
         })
+        this.props.history.push("/pokedex")
     }
 
     handleChange = event => {
