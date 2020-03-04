@@ -87,6 +87,12 @@ class PokemonPage extends React.Component {
     });
   }
 
+  leaveBattle = () => {
+    this.setState({
+      showBattle: false
+    })
+  }
+
   battle = (currentPokemon, enemyPokemon, myPokemon) => {
     console.log('triggered')
     if(this.state.currentPokemon.stat_attack >= this.state.enemyPokemon.stat_attack) {
@@ -110,13 +116,14 @@ class PokemonPage extends React.Component {
     return (
       <div>
         {this.state.showBattle ? <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon} 
-        allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle}/> :
+        allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle}/> :
         <div>
         <SelectedPokemon currentPokemon = {this.state.currentPokemon} prepareForBattle={this.prepareForBattle}/> 
         <PokemonSpecs showPokemonSpecs = {this.showPokemonSpecs} pokemon = {this.state.pokemon} handleClick = {this.handleClick} /> 
-        </div>}
+       
         <MyPokemon myPokemon={this.state.myPokemon} selectPokemon = {this.selectPokemon} /> 
         <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
+        </div>}
       </div>
     );
   }

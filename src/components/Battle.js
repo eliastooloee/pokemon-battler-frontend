@@ -15,6 +15,8 @@ class Battle extends React.Component {
     render() {
         return (
           <div className="battle">
+          <button type="button" onClick={() =>
+                this.props.leaveBattle()}>Leave Battle</button>
             <FightCard  battleResults={this.battleResults(this.props.currentPokemon)} pokemon= {this.props.currentPokemon}/>
             <button type="button" onClick={() =>
                 this.props.battle()}>Fight!</button>

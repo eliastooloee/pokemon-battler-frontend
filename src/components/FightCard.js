@@ -15,7 +15,7 @@ const FightCard = props => {
     return (
         <div className="ui column">
             <div className="fight-card">
-                <div id="winner" style={victoryStyle}> {props.battleResults? 'Winner!': 'Loser'} </div>
+                <div id="winner"> {props.battleResults? 'Winner!': ''} </div>
                 <div className="image">
                     <img alt="pokemon sprite" src={pokemon.sprite_front} />
                 </div>
