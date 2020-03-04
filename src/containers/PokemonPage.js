@@ -3,6 +3,7 @@ import PokemonCollection from "./PokemonCollection";
 import PokemonSpecs from "../components/PokemonSpecs"
 import MyPokemon from "./MyPokemon"
 import SelectedPokemon from "./SelectedPokemon";
+import Battle from "../components/Battle"
 
 class PokemonPage extends React.Component {
 
@@ -11,7 +12,10 @@ class PokemonPage extends React.Component {
     myPokemon: [],
     currentPokemon: "",
     pokemon: "",
-    showPokemon: true
+    enemyPokemon: "",
+    showPokemon: true,
+    showBattle: false,
+    winner: ""
   }
 
   componentDidMount() {
@@ -68,20 +72,58 @@ class PokemonPage extends React.Component {
   }
 
 
+  findEnemy = (allPokemon) => {
+    let enemy = this.state.allPokemon[Math.floor(Math.random() * this.state.allPokemon.length)];
+    this.setState({
+      enemyPokemon: enemy
+    })
+    
+  }
 
-  // showPokemonSpecs(pokemon) {
+  prepareForBattle = () => {
+    this.findEnemy();
+    this.setState({
+      showBattle: true
+    });
+  }
 
-  // }
+  leaveBattle = () => {
+    this.setState({
+      showBattle: false
+    })
+  }
+
+  battle = (currentPokemon, enemyPokemon, myPokemon) => {
+    console.log('triggered')
+    if(this.state.currentPokemon.stat_attack >= this.state.enemyPokemon.stat_attack) {
+      this.state.myPokemon.push(this.state.enemyPokemon);
+      this.setState({
+        winner: this.state.currentPokemon
+      })
+      
+    }else {
+      this.setState({
+        winner: this.state.enemyPokemon
+      })
+      return false;
+    }
+  }
+  
 
   render() {
     // console.log(this.state.allPokemon[0])
     // this.setState({currentPokemon: this.state.allPokemon[0]});
     return (
       <div>
-        <SelectedPokemon currentPokemon = {this.state.currentPokemon}/>
+        {this.state.showBattle ? <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon} 
+        allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle}/> :
+        <div>
+        <SelectedPokemon currentPokemon = {this.state.currentPokemon} prepareForBattle={this.prepareForBattle}/> 
         <PokemonSpecs showPokemonSpecs = {this.showPokemonSpecs} pokemon = {this.state.pokemon} handleClick = {this.handleClick} /> 
+       
         <MyPokemon myPokemon={this.state.myPokemon} selectPokemon = {this.selectPokemon} /> 
         <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
+        </div>}
       </div>
     );
   }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 
 const SelectedPokemon = props => {
-    const { currentPokemon, handleClick } = props;
+    const { currentPokemon, prepareForBattle } = props;
 
 
     function getPokemonNum(num) {
@@ -32,6 +32,9 @@ const SelectedPokemon = props => {
                         {/* add types and pokeball if collected */}
                     </div>
                 </div>
+                <button type="button" onClick={() =>
+                prepareForBattle()
+                }> Battle! </button>/>
             </div>
         );
     // } else  return "No pokemons found"
