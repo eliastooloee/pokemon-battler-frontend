@@ -10,10 +10,6 @@ const PokemonCard = props => {
         return ('00' + num).slice(-3)
     }
 
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
-    }
-
     return (
         <div className="ui column">
             <div
@@ -27,7 +23,7 @@ const PokemonCard = props => {
                 <div className="content">
                     <div className="header">
                         <p>#{getPokemonNum(pokemon.id)}</p>
-                        <h3>{capitalizeFirstLetter(pokemon.species)}</h3>
+                        <h3>{pokemon.species}</h3>
                     </div>
                     {/* add types and pokeball if collected */}
                 </div>
