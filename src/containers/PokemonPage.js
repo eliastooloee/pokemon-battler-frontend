@@ -148,8 +148,8 @@ class PokemonPage extends React.Component {
           <div>
             <Grid>
               {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
-              {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null}
-              <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} />
+              {/* {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null} */}
+              <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} />
             </Grid>
             <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
           </div>
