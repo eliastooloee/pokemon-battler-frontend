@@ -29,13 +29,13 @@ class PokemonPage extends React.Component {
 
   handleClick = (pokemon) => {
     let myPokemonArmy = this.state.myPokemon
-    if (!myPokemonArmy.includes(pokemon)){
+    if (!myPokemonArmy.includes(pokemon)) {
       this.setState({
-        myPokemon:[...this.state.myPokemon, pokemon]
+        myPokemon: [...this.state.myPokemon, pokemon]
       })
     }
     else {
-      let pokemonArray = myPokemonArmy.filter(noPokemon => noPokemon.id !== pokemon.id )
+      let pokemonArray = myPokemonArmy.filter(noPokemon => noPokemon.id !== pokemon.id)
       this.setState({
         myPokemon: [...pokemonArray]
       })
@@ -43,7 +43,7 @@ class PokemonPage extends React.Component {
   }
 
   showPokemonSpecs = (pokemon) => {
-    this.state.showPokemon? this.setState({
+    this.state.showPokemon ? this.setState({
       pokemon: pokemon,
       showBots: false
     }) : this.setState({
@@ -51,23 +51,23 @@ class PokemonPage extends React.Component {
     })
   }
 
-// problem is that Pokemon isn't set to the most recently clicked pokemon but instead the one previously clicked
+  // problem is that Pokemon isn't set to the most recently clicked pokemon but instead the one previously clicked
   selectPokemon = (pokemon) => {
     this.setState({
       pokemon: pokemon
     })
     let myPokemonArmy = this.state.myPokemon
-    if(myPokemonArmy.includes(pokemon)) {
+    if (myPokemonArmy.includes(pokemon)) {
       this.setState({
-      currentPokemon: pokemon,
-      showSelected: true
-    })} else {
+        currentPokemon: pokemon,
+        showSelected: true
+      })
+    } else {
       this.setState({
         showSelected: false
       })
     }
     console.log(pokemon)
-    // console.log(currentPokemon)
     console.log(myPokemonArmy)
   }
 
@@ -77,7 +77,7 @@ class PokemonPage extends React.Component {
     this.setState({
       enemyPokemon: enemy
     })
-    
+
   }
 
   prepareForBattle = () => {
@@ -95,35 +95,32 @@ class PokemonPage extends React.Component {
 
   battle = (currentPokemon, enemyPokemon, myPokemon) => {
     console.log('triggered')
-    if(this.state.currentPokemon.stat_attack >= this.state.enemyPokemon.stat_attack) {
+    if (this.state.currentPokemon.stat_attack >= this.state.enemyPokemon.stat_attack) {
       this.state.myPokemon.push(this.state.enemyPokemon);
       this.setState({
         winner: this.state.currentPokemon
       })
-      
-    }else {
+
+    } else {
       this.setState({
         winner: this.state.enemyPokemon
       })
       return false;
     }
   }
-  
+
 
   render() {
-    // console.log(this.state.allPokemon[0])
-    // this.setState({currentPokemon: this.state.allPokemon[0]});
     return (
       <div>
-        {this.state.showBattle ? <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon} 
-        allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle}/> :
-        <div>
-        <SelectedPokemon currentPokemon = {this.state.currentPokemon} prepareForBattle={this.prepareForBattle}/> 
-        <PokemonSpecs showPokemonSpecs = {this.showPokemonSpecs} pokemon = {this.state.pokemon} handleClick = {this.handleClick} /> 
-       
-        <MyPokemon myPokemon={this.state.myPokemon} selectPokemon = {this.selectPokemon} /> 
-        <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
-        </div>}
+        {this.state.showBattle ? <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon}
+          allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle} /> :
+          <div>
+            {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null}
+            {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
+            <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} />
+            <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
+          </div>}
       </div>
     );
   }

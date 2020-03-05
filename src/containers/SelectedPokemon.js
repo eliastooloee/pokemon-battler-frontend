@@ -1,43 +1,68 @@
 import React, { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 345,
+    },
+    media: {
+        height: 140,
+    },
+});
 
 const SelectedPokemon = props => {
     const { currentPokemon, prepareForBattle } = props;
+    const classes = useStyles();
 
-
-    function getPokemonNum(num) {
-        return ('00' + num).slice(-3)
-    }
-
-    // function capitalizeFirstLetter(string) {
-    //     return (string===null? string : string.charAt(0).toUpperCase() + string.slice(1))
-    // }
-
-    // if(props.currentPokemon.length > 0) {
-        return (
-            <div className="battle-card">
-                <div
-                    className="battle card"
-                    key={currentPokemon.id}
-                    // onClick={() => handleClick(currentPokemon)}
-                >
-                    <div className="image">
-                        <img alt="pokemon sprite" src={currentPokemon.sprite_front} /> 
-                    </div>
-                    <div className="content">
-                        <div className="header">
-                            <p>#{getPokemonNum(currentPokemon.id)}</p>
-                            <h3>{currentPokemon.species}</h3>
-                        </div>
-                        {/* add types and pokeball if collected */}
-                    </div>
-                </div>
-                <button type="button" onClick={() =>
-                prepareForBattle()
-                }> Battle! </button>/>
-            </div>
-        );
-    // } else  return "No pokemons found"
+    return (
+        <div key={currentPokemon.id}>
+            <Card className={classes.root}>
+                <CardActionArea>
+                    <CardMedia
+                        className={classes.media}
+                        image={currentPokemon.sprite_front}
+                        title="Pokemon Card"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h6" component="h2">
+                            {currentPokemon.species}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button size="small" color="primary" onClick={() => prepareForBattle()}>
+                        Battle
+                    </Button>
+                </CardActions>
+            </Card>
+        </div>
+        // <div className="battle-card">
+        //     <div
+        //         className="battle card"
+        //         key={currentPokemon.id}
+        //     >
+        //         <div className="image">
+        //             <img alt="pokemon sprite" src={currentPokemon.sprite_front} />
+        //         </div>
+        //         <div className="content">
+        //             <div className="header">
+        //                 <p>#{getPokemonNum(currentPokemon.id)}</p>
+        //                 <h3>{currentPokemon.species}</h3>
+        //             </div>
+        //         </div>
+        //     </div>
+        //     <button type="button" onClick={() =>
+        //         prepareForBattle()
+        //     }> Battle! </button>/>
+        //     </div>
+    );
 };
 
 export default SelectedPokemon;

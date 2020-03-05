@@ -15,15 +15,9 @@ const useStyles = makeStyles({
     },
 });
 
-
 const PokemonCard = props => {
-    // console.log(props)
     const { pokemon, handleClick } = props;
     const classes = useStyles();
-
-    function getPokemonNum(num) {
-        return ('00' + num).slice(-3)
-    }
 
     return (
         <div key={pokemon.id} onClick={() => handleClick(pokemon)}>
@@ -46,17 +40,3 @@ const PokemonCard = props => {
 };
 
 export default PokemonCard;
-
-{/* <div
-    key={pokemon.id}
-    onClick={() => handleClick(pokemon)}
->
-    <div>
-        <img alt="pokemon sprite" src={pokemon.sprite_front} />
-    </div>
-    <div>
-        <div>
-            <p>#{getPokemonNum(pokemon.id)}</p>
-            <h3>{pokemon.species}</h3>
-        </div>
-        {/* add types and pokeball if collected */}
