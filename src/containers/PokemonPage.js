@@ -4,6 +4,8 @@ import PokemonSpecs from "../components/PokemonSpecs"
 import MyPokemon from "./MyPokemon"
 import SelectedPokemon from "./SelectedPokemon";
 import Battle from "../components/Battle"
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
 
 class PokemonPage extends React.Component {
 
@@ -30,11 +32,11 @@ class PokemonPage extends React.Component {
 
   getMyPokemon = (currentUser) => {
     fetch(`http://localhost:3000/users/${this.props.currentUser.id}/pokemons`)
-    .then(res => res.json())
-    .then(myPokemon => this.setState({
-      myPokemon: myPokemon
-    }))
-    .catch(err => console.log(err))
+      .then(res => res.json())
+      .then(myPokemon => this.setState({
+        myPokemon: myPokemon
+      }))
+      .catch(err => console.log(err))
   }
 
   handleClick = (pokemon) => {
@@ -112,8 +114,8 @@ class PokemonPage extends React.Component {
         winner: this.state.currentPokemon
       })
       this.persistMyPokemon(this.state.enemyPokemon)
-      
-    }else {
+
+    } else {
       this.setState({
         winner: this.state.enemyPokemon
       })
@@ -134,20 +136,26 @@ class PokemonPage extends React.Component {
       })
     })
   }
-  
+
 
   render() {
     return (
-      <div>
-        {this.state.showBattle ? <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon}
-          allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle} /> :
+      <Container maxWidth="md" style={{ marginTop: 10 }}>
+        {this.state.showBattle ?
+          <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon}
+            allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle} />
+          :
           <div>
-            {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null}
-            {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
-            <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} />
+            <Grid>
+              {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
+              {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null}
+              <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} />
+            </Grid>
             <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
-          </div>}
-      </div>
+          </div>
+        }
+      </Container>
+
     );
   }
 }
