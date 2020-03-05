@@ -25,6 +25,16 @@ class PokemonPage extends React.Component {
         allPokemon: allPokemon
       }))
       .catch(err => console.log(err))
+
+  }
+
+  getMyPokemon = (currentUser) => {
+    fetch(`http://localhost:3000/users/${this.props.currentUser.id}/pokemons`)
+    .then(res => res.json())
+    .then(myPokemon => this.setState({
+      myPokemon: myPokemon
+    }))
+    .catch(err => console.log(err))
   }
 
   handleClick = (pokemon) => {
@@ -89,7 +99,8 @@ class PokemonPage extends React.Component {
 
   leaveBattle = () => {
     this.setState({
-      showBattle: false
+      showBattle: false,
+      winner: ""
     })
   }
 
@@ -100,6 +111,7 @@ class PokemonPage extends React.Component {
       this.setState({
         winner: this.state.currentPokemon
       })
+      this.persistMyPokemon(this.state.enemyPokemon)
       
     }else {
       this.setState({
@@ -107,6 +119,20 @@ class PokemonPage extends React.Component {
       })
       return false;
     }
+  }
+
+  persistMyPokemon = (pokemon, currentUser) => {
+    fetch("http://localhost:3000/users_pokemons", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      },
+      body: JSON.stringify({
+        "pokemon_id": pokemon.id,
+        "user_id": this.props.currentUser.id
+      })
+    })
   }
   
 
@@ -122,6 +148,9 @@ class PokemonPage extends React.Component {
         <PokemonSpecs showPokemonSpecs = {this.showPokemonSpecs} pokemon = {this.state.pokemon} handleClick = {this.handleClick} /> 
        
         <MyPokemon myPokemon={this.state.myPokemon} selectPokemon = {this.selectPokemon} /> 
+        {/* <button type="button" onClick={() =>
+                this.getMyPokemon()
+                }> Load Pokemon </button> */}
         <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
         </div>}
       </div>

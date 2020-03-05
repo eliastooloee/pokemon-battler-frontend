@@ -83,7 +83,7 @@ class App extends Component {
       <div className="App">
         <Router>
           <NavBar loggedIn={this.state.loggedIn} logout={this.logout} />
-          <Route path="/pokedex" exact component={PokemonPage} />
+          <Route path="/pokedex" exact render={() => <PokemonPage currentUser={this.state.currentUser} />} />
           <Route path="/battle" exact component={Battle} />
           <Route path="/profile" exact component={MyPokemon} />
           <Route path="/login" exact render={(props) => <Login {...props} loginUser={this.loginUser} />} />
