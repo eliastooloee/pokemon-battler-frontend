@@ -33,7 +33,7 @@ const MyPokemon = props => {
     <div>
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12}>
-          <Grid container justify="center" spacing={2}>
+          <Grid container spacing={2}>
             {renderPokemons()}
           </Grid>
         </Grid>
