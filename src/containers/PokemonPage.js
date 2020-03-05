@@ -116,7 +116,7 @@ class PokemonPage extends React.Component {
         {this.state.showBattle ? <Battle currentPokemon={this.state.currentPokemon} myPokemon={this.state.myPokemon}
           allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle} /> :
           <div>
-            <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} />
+            {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null}
             {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
             <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} />
             <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
