@@ -1,6 +1,11 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import { Typography } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 export default class SignUp extends React.Component {
     state = {
@@ -23,11 +28,29 @@ export default class SignUp extends React.Component {
     render() {
         return (
             <div className="SignUp">
-                <form onSubmit={this.handleSubmit}>
-                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
-                    <Button type="submit" variant="contained" color="primary">Signup</Button>
-                </form>
-            </div>
+                <Grid
+                    container
+                    spacing={0}
+                    direction="column"
+                    alignItems="center"
+                    justify="center"
+                    style={{ marginTop: '15vh' }}>
+                    <Card variant="outlined">
+                        <CardContent>
+                            <form onSubmit={this.handleSubmit}>
+                                <Typography>
+                                    <TextField size="small" id="outlined-basic" label="Username" variant="outlined" onChange={event => this.handleChange(event)} />
+                                </Typography>
+                                <CardActions>
+                                    <Button type="submit" variant="contained" color="primary">Sign Up</Button>
+                                </CardActions>
+                            </form>
+                        </CardContent>
+
+                    </Card>
+
+                </Grid>
+            </div >
         )
     }
 }
