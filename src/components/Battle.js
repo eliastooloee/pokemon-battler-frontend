@@ -27,6 +27,9 @@ const Battle = props => {
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
+        <Button size="small" color="primary" onClick={() => props.leaveBattle()}>
+          Exit Battle
+          </Button>
         <Grid container justify="center" spacing={4}>
           <Grid key={props.currentPokemon.id} item xs={4}>
             <FightCard battleResults={battleResults(props.currentPokemon)} pokemon={props.currentPokemon} />
