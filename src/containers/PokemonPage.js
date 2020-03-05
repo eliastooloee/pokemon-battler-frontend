@@ -152,7 +152,6 @@ class PokemonPage extends React.Component {
             </Grid>
             <Grid style={{ marginTop: 10 }}>
               <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} />
-
             </Grid>
             <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
           </div>
