@@ -1,23 +1,46 @@
 import React from "react";
 import PokemonCard from "../components/PokemonCard";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
-class MyPokemon extends React.Component {
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    height: 140,
+    width: 100,
+  },
+  control: {
+    padding: theme.spacing(2),
+  },
+}));
 
-  render(){
-    return (
-      <div className="bot-army">
-        <div className="ui five column grid">
-          <div className="row bot-army-row">
-            {
-              this.props.myPokemon.map( pokemon => <PokemonCard handleClick = {this.props.selectPokemon} key={pokemon.id} pokemon={pokemon} />)
-            }
-            My Pokemon
-          </div>
-        </div>
-      </div>
-    );
+const MyPokemon = props => {
+  const classes = useStyles();
+
+  function renderPokemons() {
+    return props.myPokemon.map(pokemon => {
+      return (
+        <Grid key={pokemon.id} item xs={2}>
+          <PokemonCard pokemon={pokemon} key={pokemon.id} handleClick={props.selectPokemon} />
+        </Grid>
+      )
+    })
   }
-  
+
+  return (
+    <div>
+      <Grid container className={classes.root} spacing={2}>
+        <Grid item xs={12}>
+          <Grid container justify="center" spacing={2}>
+            {renderPokemons()}
+          </Grid>
+        </Grid>
+      </Grid>
+    </div>
+  );
+
 };
 
 export default MyPokemon;
