@@ -2,7 +2,6 @@ import React from "react";
 import PokemonCard from "../components/PokemonCard";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -32,22 +31,14 @@ const PokemonCollection = props => {
     }
 
     return (
-        <Container maxWidth="md">
-            <Grid container className={classes.root} spacing={2}>
-                <Grid item xs={12}>
-                    <Grid container justify="center" spacing={2}>
-                        {renderPokemons()}
-                    </Grid>
+        <Grid container className={classes.root} spacing={2}>
+            <Grid item xs={12}>
+                <Grid container justify="center" spacing={2}>
+                    {renderPokemons()}
                 </Grid>
             </Grid>
-        </Container>
+        </Grid>
     )
 };
 
 export default PokemonCollection;
-
-            // <div>
-            //     <div>
-            //         {this.renderPokemons()}
-            //     </div>
-            // </div>
