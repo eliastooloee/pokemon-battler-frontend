@@ -5,6 +5,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 
 const useStyles = makeStyles({
     root: {
@@ -16,7 +18,7 @@ const useStyles = makeStyles({
 });
 
 const PokemonCard = props => {
-    const { pokemon, handleClick } = props;
+    const { pokemon, handleClick, currentPokemon, prepareForBattle } = props;
     const classes = useStyles();
 
     return (
@@ -33,6 +35,11 @@ const PokemonCard = props => {
                             {pokemon.species}
                         </Typography>
                     </CardContent>
+                    {currentPokemon ?
+                        <Button size="small" color="primary" onClick={() => prepareForBattle()}>
+                            Battle
+                        </Button>
+                        : null}
                 </CardActionArea>
             </Card>
         </div>
