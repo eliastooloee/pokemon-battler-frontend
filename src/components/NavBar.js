@@ -10,7 +10,7 @@ const link = {
     padding: '12px',
     margin: '0 6px 6px',
     textDecoration: 'none',
-    color: 'darkgrey',
+    color: 'darkgrey'
 }
 
 const useStyles = makeStyles(theme => ({
@@ -40,7 +40,6 @@ export default function NavBar(props) {
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                         PokéBattler
                     </IconButton>
-                    <NavLink to="/battle" exact style={link} activeStyle={active}>Battle</NavLink>
                     <NavLink to="/pokedex" exact style={link} activeStyle={active}>Pokédex</NavLink>
                     <NavLink to="/login" exact style={link} activeStyle={active} onClick={props.logout}>{props.loggedIn ? "Logout" : "Login"}</NavLink>
                 </Toolbar>
