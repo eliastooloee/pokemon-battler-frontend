@@ -23,7 +23,7 @@ const MyPokemon = props => {
     return props.myPokemon.map(pokemon => {
       return (
         <Grid key={pokemon.id} item xs={2}>
-          <PokemonCard pokemon={pokemon} key={pokemon.id} handleClick={props.selectPokemon} />
+          <PokemonCard pokemon={pokemon} key={pokemon.id} handleClick={props.selectPokemon} prepareForBattle={props.prepareForBattle} currentPokemon={props.currentPokemon} />
         </Grid>
       )
     })
@@ -33,7 +33,7 @@ const MyPokemon = props => {
     <div>
       <Grid container className={classes.root} spacing={2}>
         <Grid item xs={12}>
-          <Grid container justify="center" spacing={2}>
+          <Grid container spacing={2}>
             {renderPokemons()}
           </Grid>
         </Grid>

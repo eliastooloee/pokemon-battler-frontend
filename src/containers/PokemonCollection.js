@@ -23,7 +23,7 @@ const PokemonCollection = props => {
     function renderPokemons() {
         return props.allPokemon.map(pokemon => {
             return (
-                <Grid key={pokemon.id} item xs={2}>
+                <Grid key={pokemon.id} item xs={3} sm={2}>
                     <PokemonCard pokemon={pokemon} key={pokemon.id} handleClick={props.handleClick} />
                 </Grid>
             )
@@ -42,9 +42,3 @@ const PokemonCollection = props => {
 };
 
 export default PokemonCollection;
-
-            // <div>
-            //     <div>
-            //         {this.renderPokemons()}
-            //     </div>
-            // </div>
