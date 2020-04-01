@@ -1,4 +1,4 @@
-# plantr: plant care mangaing app
+# PokéBattler
 This **React** app was created in collaboration by [Christina](https://github.com/christinamcmahon) and [Eli](https://github.com/eliastooloee) at Flatiron School. The [backend](https://github.com/christinamcmahon/pokemon-battler-backend) was made with **Ruby on Rails**. **Material UI** was used for styling. Pokémon data was pulled from the **[PokéAPI]**(https://pokeapi.co/).
 
 ## About
