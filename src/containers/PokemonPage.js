@@ -146,12 +146,15 @@ class PokemonPage extends React.Component {
             allPokemon={this.state.allPokemon} enemyPokemon={this.state.enemyPokemon} winner={this.state.winner} battle={this.battle} leaveBattle={this.leaveBattle} />
           :
           <div>
-            <Grid>
-              {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
-              {/* {this.state.currentPokemon ? <SelectedPokemon currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} /> : null} */}
-            </Grid>
-            <Grid style={{ marginTop: 10 }}>
-              <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} />
+            <Grid container>
+              <Grid item xs={12} sm={4}>
+                {this.state.pokemon ? <PokemonSpecs showPokemonSpecs={this.showPokemonSpecs} pokemon={this.state.pokemon} handleClick={this.handleClick} /> : null}
+              </Grid>
+              {this.state.pokemon ?
+                <Grid item xs={12} sm={8}>
+                  <MyPokemon myPokemon={this.state.myPokemon} selectPokemon={this.selectPokemon} currentPokemon={this.state.currentPokemon} prepareForBattle={this.prepareForBattle} />
+                </Grid>
+                : null}
             </Grid>
             <PokemonCollection allPokemon={this.state.allPokemon} handleClick={this.showPokemonSpecs} />
           </div>

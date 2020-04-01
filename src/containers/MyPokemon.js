@@ -1,18 +1,19 @@
 import React from "react";
 import PokemonCard from "../components/PokemonCard";
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'start',
+    overflow: 'hidden',
   },
-  paper: {
-    height: 140,
-    width: 100,
-  },
-  control: {
-    padding: theme.spacing(2),
+  gridList: {
+    width: 500,
+    height: 660,
   },
 }));
 
@@ -22,22 +23,19 @@ const MyPokemon = props => {
   function renderPokemons() {
     return props.myPokemon.map(pokemon => {
       return (
-        <Grid key={pokemon.id} item xs={2}>
+        <GridListTile key={pokemon.id} cols={1}>
           <PokemonCard pokemon={pokemon} key={pokemon.id} handleClick={props.selectPokemon} prepareForBattle={props.prepareForBattle} currentPokemon={props.currentPokemon} />
-        </Grid>
+        </GridListTile>
       )
     })
   }
 
   return (
-    <div>
-      <Grid container className={classes.root} spacing={2}>
-        <Grid item xs={12}>
-          <Grid container spacing={2}>
-            {renderPokemons()}
-          </Grid>
-        </Grid>
-      </Grid>
+    <div className={classes.root}>
+      <GridList cellHeight={"auto"} className={classes.gridList} cols={3}>
+        {renderPokemons()}
+      </GridList>
+
     </div>
   );
 

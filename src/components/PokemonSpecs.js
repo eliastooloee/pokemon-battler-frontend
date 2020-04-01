@@ -51,44 +51,42 @@ const PokemonSpecs = props => {
   return (
     <div>
       <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={pokemon.sprite_front}
-            title="Pokemon Sprite"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {pokemon.species}
-            </Typography>
-            <Typography variant="body1" color="textSecondary" component="p">
-              #{getPokemonNum(pokemon.id)}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              {pokemon.description}
-            </Typography>
-            <TableContainer component={Paper}>
-              <Table className={classes.table} size="small" aria-label="a dense table">
-                <TableHead>
-                </TableHead>
-                <TableBody>
-                  {rows.map(row => (
-                    <TableRow key={row.name}>
-                      <TableCell component="th" scope="row">
-                        {row.name}
-                      </TableCell>
-                      <TableCell>{row.stat}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </CardContent>
-        </CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={pokemon.sprite_front}
+          title="Pokemon Sprite"
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {pokemon.species}
+          </Typography>
+          <Typography variant="body1" color="textSecondary" component="p">
+            #{getPokemonNum(pokemon.id)}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {pokemon.description}
+          </Typography>
+          <TableContainer component={Paper}>
+            <Table className={classes.table} size="small" aria-label="a dense table">
+              <TableHead>
+              </TableHead>
+              <TableBody>
+                {rows.map(row => (
+                  <TableRow key={row.name}>
+                    <TableCell component="th" scope="row">
+                      {row.name}
+                    </TableCell>
+                    <TableCell>{row.stat}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </CardContent>
         <CardActions>
           <Button size="small" color="primary" onClick={() => handleClick(pokemon)}>
             Add Pokemon
-        </Button>
+          </Button>
         </CardActions>
       </Card>
     </div>
