@@ -1,6 +1,8 @@
 # PokéBattler
 This **React** app was created in collaboration by [Christina](https://github.com/christinamcmahon) and [Eli](https://github.com/eliastooloee) at Flatiron School. The [backend](https://github.com/christinamcmahon/pokemon-battler-backend) was made with **Ruby on Rails**. **Material UI** was used for styling. Pokémon data was pulled from the [PokéAPI](https://pokeapi.co/).
 
+[Narrated Video Walkthrough](https://youtu.be/SNHGKBJsgwU)
+
 ## About
 PokéBattler includes a Pokédex with the Gen 1 Pokémon and their base stats, description, and sprite. Users can select their starter and battle random Pokémon for a chance to add them to their team.
 
